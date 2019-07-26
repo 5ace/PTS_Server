@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Check nvidia driver and version
+nvidia-smi | if grep -q 'Driver Version: 41'; then
+    echo ""
+    echo "Nvidia driver is installed and up to date."
+else
+    # Install nvidia driver
+    echo "Installing Nvidia driver..."
+    sudo add-apt-repository ppa:graphics-drivers/ppa
+    sudo apt-get update
+    sudo apt-get install nvidia-driver-410
+fi
+
+nvidia-smi | if grep -q 'Driver Version: 41'; then
+    echo""
+else
+    echo "Failed installing Nvidia driver or is outdated."
+    echo "Please install version 410(or above) manually."
+    exit 1
+fi
+
+
+# Check CUDA version
+nvcc -V | if grep -q 'release 10'; then
+    echo "CUDA is installed and up to date."
+else
+    # Install CUDA
+    echo "Installing CUDA..."
+    wget https://developer.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda_10.1.168_418.67_linux.run
+    sudo sh cuda_10.1.168_418.67_linux.run
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64:
+    export CUDA_HOME=/usr/local/cuda
+    export PATH=$PATH:/usr/local/cuda/bin
+    source ~/.bashrc
+    sudo apt-get install nvidia-cuda-toolkit
+fi
+
+nvcc -V | if grep -q 'release 10'; then
+    echo""
+else
+    echo "Failed installing CUDA or wrong version."
+    echo "Please install CUDA 10.0(or above) manually."
+    exit 1
+fi
+
+# Check Python3 version
+python3 -V | if grep -q 'Python 3.'; then
+    echo "Python3 in installed and up to date."
+else
+    # Install Anaconda python3
+    echo "Installing Anaconda Python3..."
+    wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
+    sudo sh Anaconda3-2019.07-Linux-x86_64.sh
+    source ~/.bashrc
+fi
+
+python3 -V | if grep -q 'Python 3.'; then
+    echo ""
+else
+    echo "Failed installing Anaconda Python3 or wrong version."
+    echo "Please install Anaconda Python3(or above) manually."
+    exit 1
+fi
+
+# Check and start conda enviroment
+conda env list | if grep -q 'PTS'; then
+    echo "Conda venv PTS checked."
+    conda activate PTS
+else
+    echo "Creating conda venv PTS..."
+    conda create -n PTS
+fi
+
+conda activate PTS
