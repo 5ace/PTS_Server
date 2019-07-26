@@ -1,0 +1,71 @@
+# 	------------------ parameters.txt -------------------------
+#	This text file can be used to override the default values set by the CDVS Library.
+#	Please note that the use of this text file is optional.
+# 	------------------ list of parameters -------------------------
+#	
+#	int descLength;					 length in bytes of the CDVS descriptor (i.e. 512, 1024, 2048)
+#	int resizeMaxSize;				 maximum size of one side of the image 
+#	int blockWidth;					 coordinate coding: spatial resolution of the coordinates (max error = blockWidth/2)
+#	int ctxTableIdx;				 coordinate coding: index of the context table to use
+#	char modeExt[40];				 descriptor extension
+#	unsigned int selectMaxPoints;			 feature extraction: max number of points used to describe an image
+#	unsigned int numRelevantPoints;			 feature extraction: number of points considered relevant in the retrieval process
+#	float ratioThreshold;				 DISTRAT: threshold for descriptor matching 
+#	unsigned int minNumInliers;			 DISTRAT: min number of inliers after the geometric check
+#	double wmThreshold;				 Weighted matching threshold
+#	double wmThreshold2Way;				 Two way matching weighted threshold
+#	double wmMixed;					 Weighted matching threshold for mixed cases
+#	double wmMixed2Way;				 Two way weighted matching threshold for mixed cases
+#	int debugLevel;					 0 = off, 1 = on (quiet), 2 = on (verbose), 3 = verbose + dump files 
+#	int ransacNumTests; 				 RANSAC: number of iterations in RANSAC 
+#	float ransacThreshold;				 RANSAC: distortion threshold to be used by RANSAC
+#	unsigned int chiSquarePercentile;		 percentile used in DISTRAT for Chi-square computation
+#	int retrievalLoops;				 number of loops performed in the final stage of the retrieval process
+#	double wmRetrieval;				 Weighted matching threshold for retrieval
+#	double wmRetrieval2Way;				 Two way weighted matching threshold for retrieval
+#	int retrievalMaxPoints;				 max number of points used in the retrieval experiment
+#	int queryExpansionLoops;			 number of query expansion loops to perform in the retrieval experiment
+#	float scfvThreshold;				 threshold value to control the sparsity of scfv vector
+#	bool hasVar;					 indicates if using the gradient vector w.r.t the variance of Gaussian function
+#	float locationBits;				 average bits per key point to encode location information;
+#	bool hasBitSelection;				 indicates if the Global Descriptor uses the bit selection algorithm to reduce its size
+#	float gdThreshold;				 global descriptor threshold
+#	float gdThresholdMixed;				 global descriptor threshold for mixed cases
+
+[Mode = 1]
+wmThreshold = 1.645
+wmThreshold2Way = 1.64
+gdThreshold = 9.285
+
+[Mode = 2]
+wmThreshold = 2.7
+wmMixed = 2.785
+wmThreshold2Way = 2.625
+gdThreshold = 5.725
+wmMixed2Way = 2.945
+gdThresholdMixed = 5.985
+
+[Mode = 3]
+wmThreshold = 2.12
+wmMixed = 2.19
+wmThreshold2Way = 1.87
+gdThreshold = 5.98
+wmMixed2Way = 1.98
+gdThresholdMixed = 6.025
+
+[Mode = 4]
+wmThreshold = 1.86
+wmThreshold2Way = 1.575
+gdThreshold = 7.235
+
+[Mode = 5]
+wmThreshold = 2.165
+wmThreshold2Way = 1.725
+gdThreshold = 7.215
+
+[Mode = 6]
+wmThreshold = 2.15
+wmThreshold2Way = 1.665
+gdThreshold = 7.31
+
+

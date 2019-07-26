@@ -1,0 +1,9 @@
+﻿已經開始建置於 2017/11/10 下午 12:39:54。
+     1>節點 3 (Build 目標) 上的專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_applications\deployment\simpleextract\simpleextract.vcxproj"。
+     1>Link:
+         simpleextract.vcxproj -> D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\simpleextract\simpleextract.exe
+     1>專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_applications\deployment\simpleextract\simpleextract.vcxproj" (Build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:00.05

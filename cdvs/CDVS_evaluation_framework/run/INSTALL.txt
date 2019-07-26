@@ -1,0 +1,5 @@
+installation and running the CDVS Test Model on Windows 64 bit:
+1) build all projects using Visual Studio (open deployment/all_projects/all_projects.sln and press F7)
+2) install cdvs-ti-win64.msi  (that can be found in deployment/cdvs-ti-win64/Release after building)
+3) edit conf.pl and set the correct path in datasetPath and annotationPath
+4) run the run-all-perl.bat script

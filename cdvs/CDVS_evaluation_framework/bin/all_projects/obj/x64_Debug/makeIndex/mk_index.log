@@ -1,0 +1,21 @@
+﻿已經開始建置於 2017/12/15 下午 06:24:51。
+     1>節點 4 (Build 目標) 上的專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\mkindex\mk_index.vcxproj"。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\lib /I..\..\libraries /I..\..\shared /I..\..\libraries\bitstream\src /I..\..\libraries\find_overlap /I"..\..\libraries\gmm-fisher" /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\makeIndex\\" /Fd"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\makeIndex\vc110.pdb" /Gd /TP /wd4996 /errorReport:prompt ..\..\shared\FileManager.cpp ..\..\src\makeIndex.cpp
+         FileManager.cpp
+         makeIndex.cpp
+     1>..\..\src\makeIndex.cpp(62): warning C4267: '引數' : 將 'size_t' 轉換為 'int'，資料可能遺失
+         正在產生程式碼...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\makeIndex\makeIndex.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\makeIndex\mk_index.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\makeIndex\makeIndex.lib" /MACHINE:X64 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\makeIndex\FileManager.obj"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\makeIndex\makeIndex.obj"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\distratlib\distratlib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\vlfeatlib\vlfeatlib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\cdvslib\cdvslib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\libcdvs_main\libcdvs_main.lib"
+         mk_index.vcxproj -> D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\makeIndex\makeIndex.exe
+     1>專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\mkindex\mk_index.vcxproj" (Build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:04.10

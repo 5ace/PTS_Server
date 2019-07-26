@@ -1,0 +1,12 @@
+The source code is distributed by copyright holders under the following licenses:
+
+Telecom Italia        - ISO/IEC license - most classes; see file headers
+Pecking University    - ISO/IEC license - SCFVIndex.cpp, SCFVData.cpp, AlpOctaveBF.cpp
+Stanford University   - ISO/IEC license - CsscCoordinateCoding.cpp, cssc_train.cpp
+Huawei Technologies   - ISO/IEC license - CsscCoordinateCoding.cpp, cssc_train.cpp
+Visual Atoms          - ISO/IEC license - FeatureList.cpp
+Politecnico di Milano - ISO/IEC license - PointPairs.cpp, Points.cpp
+ST Microelectronics   - ISO/IEC license - PointPairs.cpp, Points.cpp
+University of Oxford  - BSD license     - gmm-fisher library
+Rich Geldreich        - unlicense.org   - resampler library 
+Andrea Vedaldi and Brian Fulkerson - BSD license - VLFeat library

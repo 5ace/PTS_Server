@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4A6AE73C-D8B6-4C18-9CE3-28E7BE16BB2C}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN64;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalIncludeDirectories>C:\local\jpeg-8c</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)jpeg-8c.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN64;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointExceptions>
+      </FloatingPointExceptions>
+      <CompileAsManaged>false</CompileAsManaged>
+      <OpenMPSupport>true</OpenMPSupport>
+      <AdditionalIncludeDirectories>C:\local\jpeg-8c</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)jpeg-8c.lib</OutputFile>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="C:\local\jpeg-8c\jaricom.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcapimin.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcapistd.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcarith.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jccoefct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jccolor.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcdctmgr.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jchuff.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcinit.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcmainct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcmarker.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcmaster.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcomapi.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcparam.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcprepct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jcsample.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jctrans.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdapimin.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdapistd.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdarith.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdatadst.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdatasrc.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdcoefct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdcolor.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jddctmgr.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdhuff.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdinput.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdmainct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdmarker.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdmaster.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdmerge.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdpostct.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdsample.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jdtrans.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jerror.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jfdctflt.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jfdctfst.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jfdctint.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jidctflt.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jidctfst.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jidctint.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jmemmgr.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jmemnobs.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jquant1.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jquant2.c" />
+    <ClCompile Include="C:\local\jpeg-8c\jutils.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="jconfig.h" />
+    <ClInclude Include="jdct.h" />
+    <ClInclude Include="jerror.h" />
+    <ClInclude Include="jinclude.h" />
+    <ClInclude Include="jmemsys.h" />
+    <ClInclude Include="jmorecfg.h" />
+    <ClInclude Include="jpegint.h" />
+    <ClInclude Include="jpeglib.h" />
+    <ClInclude Include="jversion.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,9 @@
+﻿已經開始建置於 2017/11/10 下午 12:32:11。
+     1>節點 3 (Build 目標) 上的專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\libraries\Distrat\lib\distratlib.vcxproj"。
+     1>Lib:
+         distratlib.vcxproj -> D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\distratlib\distratlib.lib
+     1>專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\libraries\Distrat\lib\distratlib.vcxproj" (Build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:00.03

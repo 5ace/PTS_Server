@@ -1,0 +1,96 @@
+/**
+@mainpage Documentation
+@section intro Introduction
+This is the documentation of the Test Model (TM) for MPEG Compact Descriptors for Visual Search. 
+
+The relevant MPEG documents related to CDVS are the following:
+	- N12201: Compact Descriptors for Visual Search: Call for Proposals 
+	- N12202: Compact Descriptors for Visual Search: Evaluation Framework
+	- N11529: Compact Descriptors for Visual Search: Applications and Use Scenarios
+	- N11530: Compact Descriptors for Visual Search: Context and Objectives
+	- N11531: Compact Descriptors for Visual Search: Requirements
+
+The software implements Architecture B for visual search applications, as described in 	N11529.
+It is composed by a suite of five executables:
+	- binaries for extraction and pairwise comparison:
+		- extract.exe: extract CDVS descriptor form a set of images;		
+		- match.exe: match query and reference descriptors producing a similarity score;
+	- binaries for retrieval experiments:
+		- makeIndex.exe: produces indices from a set of reference descriptors;
+		- joinIndices.exe: joins a list of indices by merging their values into a singe big index;
+		- retrieve.exe: uses the global index to match a query image with the most similar images in the database;
+	
+All executables are built as 64-bit applications, which allows them to process a vast amount of data (please note that at least 8 GB of memory 
+are needed to run the CDVS retrieval experiments). Moreover, the extract and retrieve executables are implemented as multi-threading processes 
+in order to speed-up the execution of CDVS experiments.
+ 
+In the following section, we describe the requirements for building and running the code (see @ref requirements), 
+how to build the code (see @ref building), and finally how to run the CDVS experiments (see @ref running).
+
+@section requirements Requirements
+
+@subsection buildreq Requirements for building
+The CDVS code is entirely written in standard C and C++, and has been compiled on Windows 7 Enterprise 64-bit using Visual C++ 2010 (64 bit).
+The code can also be compiled on Linux 64-bit, as described in the Linux package files (see the README instructions in CDVS_evaluation_framework); 
+also in this case the executables are all compiled as 64-bit applications, and provide comparable results (but not exactly the same results):
+differences in the order of 0.1% may be noted in pairwise matching and retrieval.
+
+@subsection runreq Requirements to run the code
+All applications must run on 64-bit Windows or Linux, and running the retrieval binaries (makeIndex, joinIndices, retrieve) require at least 8 GB 
+of physical memory installed on the processing machine. The other binaries require much less memory.
+
+@section building Building the code
+Open the CDVS_evaluation_framework/deployment/all_projects/all_projects.sln solution using Visual Studio 2010 (64-bit);
+To build all applications, set:
+	- Solution Configurations: Release;
+	- Solution Platforms: x64;
+	
+and press F7 ("Build Solution"). This will compile all x64 applications and store the binaries in the "bin" directory.
+
+The output results of the build process are the following:
+	- the binary executables for local testing in CDVS_evaluation_framework/bin/:
+		- extract.exe
+		- match.exe
+		- makeIndex.exe
+		- joinIndices.exe
+		- retrieve.exe
+		
+@section running Running the CDVS experiments
+In order to run the MPEG CDVS experiments, first obtain the data set and the distractor set from 
+the MPEG CDVS ad hoc group (mailto:CDVS-TNT@listserv.uni-hannover.de), which is composed by a set of one million JPEG images (about a Terabyte of data).
+Then, it is possible to run the experiments installing the data and code on a 64-bit workstation and using the scripts provided 
+in CDVS_evaluation_framework/run/
+
+In brief, the following steps must be performed:
+	- install the data package (data set and distractor set);
+	- install the annotation files
+	- install perl (this is needed in order to run the perl scripts)
+	- install the CDVS binaries into C:\\bin
+	- modify the conf.pl Perl file in CDVS_evaluation_framework/run/ in order to match the location of your data:
+		- edit $datasetPath and set the correct data set directory;
+		- edit $annotationPath and set the correct annotation directory;
+	- run the full set of experiments
+		- execute run-all-perl.bat
+	- get the results from the produced log files (the cdvsLogReader.jar tool can be used to produce a summary of results).
+
+@section howto How to rebuild this documentation from source code
+If you want to rebuild this documentation from source code, you have to install the following applications in C:\\bin 
+	- Doxygen from http://www.stack.nl/~dimitri/doxygen/
+	- Graphviz from http://www.graphviz.org/
+	
+Then go to CDVS_evaluation_framework/Doxygen/ and click on "createDoc.bat", it will create the html files in a subdirectory named "html".
+Locate the file "index.html" and open it in a browser to see the produced documentation.
+
+@section ack Acknowledgements
+The MPEG CDVS working group would like to thank all those developers providing the following great libraries in open source to the scientific community, who allowed the group to produce
+this CDVS implementation:
+	- jpeg-8c (http://www.ijg.org/) to read JPEG images; 
+	- imageresampler 1.0.7 (http://code.google.com/p/imageresampler/) to scale down the images to a reasonable resolution;
+	- vlfeat 0.9.14 (http://www.vlfeat.org) to extract the keypoints and the SIFT descriptors from scaled images; 
+	- ari 2014 (http://marknelson.us/2014/10/19/data-compression-with-arithmetic-coding) to perform adaptive arithmetic coding for the compression of coordinates;
+	- eigen 3.2.0 (http://eigen.tuxfamily.org/index.php) to perform some linear algebra for the localization.
+
+In particular, we would like to thank Andrea Vedaldi from the Oxford Visual Geometry Group who kindly agreed to release his VLFeat library under the very liberal terms 
+of the BSD license (http://www.vlfeat.org/license.html).
+	
+*/

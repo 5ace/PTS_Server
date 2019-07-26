@@ -1,0 +1,41 @@
+Please note that the MPEG CDVS TM must be compiled and run on a 64-bit machine running a 64-bit Linux OS.
+
+Before running the "configure" script, the following packages must be installed:
+1) jpeg-8c (or later version, from http://www.ijg.org/)
+2) Eigen (install version 3.1.4 from http://eigen.tuxfamily.org/)
+
+Additionally, if the BFlog-based version of the library is to be installed, also
+the following packages must be installed:
+3) Fast Fourier transform library (libfftw3-3 on Ubuntu)
+
+Before compiling the applications in the src directory, the configure script
+needs to be generated once.
+# create the configure script
+sh autogen.sh
+
+Then, the usual ./configure, make, make install will build and install all CDVS
+libraries and executables.
+Notice that, by default, only the standard version of the CDVS library is built 
+and installed. The BFlog and LowMem versions of the libraries can be optionally
+built and installed passing the configure script the options --with-bflog and
+--with-lowmem respectively.
+If compiling the code using gcc and g++, the following settings can be used to optimize the C++ and C code.
+
+# optimize g++ and gcc 
+# WITHOUT multithreading (as required by MPEG in crosscheck verification):
+CFLAGS="-march=native -O3 -mpopcnt -DNDEBUG -pipe"
+# WITH multithreading (can be used to speed up internal tests):
+CFLAGS="-march=native -O3 -mpopcnt -DNDEBUG -fopenmp -pipe"
+# run configure with optimization flags
+mkdir build
+cd build
+../configure --prefix=$HOME CFLAGS="${CFLAGS}" CXXFLAGS="${CFLAGS}" 
+# build all binaries:
+make 
+# install all binaries in your own $HOME/bin directory:
+make install
+# cleanup the build tree:
+make distclean
+
+
+More documentation can be found in the ./docs directory.

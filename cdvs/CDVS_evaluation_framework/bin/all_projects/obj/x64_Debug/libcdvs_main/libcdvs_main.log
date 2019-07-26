@@ -1,0 +1,39 @@
+﻿已經開始建置於 2017/11/10 下午 12:39:53。
+     1>節點 3 (Build 目標) 上的專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\libcdvs_main.vcxproj"。
+     1>Lib:
+         libcdvs_main.vcxproj -> D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\libcdvs_main\libcdvs_main.lib
+       PostBuildEvent:
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\lib\CdvsInterface.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\CdvsPoint.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\CdvsException.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\PointPairs.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\Parameters.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\CdvsDescriptor.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\Buffer.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\ImageBuffer.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\FeatureList.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\Feature.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\SCFVIndex.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\shared\AbstractDetector.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\libraries\bitstream\src\BitInputStream.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         copy D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\libraries\bitstream\src\BitOutputStream.h D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\..\..\..\CDVS_applications\deployment\include
+         :VCEnd
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+         複製了         1 個檔案。
+     1>專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\libcdvs_main\libcdvs_main.vcxproj" (Build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:00.06

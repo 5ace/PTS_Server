@@ -1,0 +1,23 @@
+﻿已經開始建置於 2017/12/15 下午 06:24:55。
+     1>節點 5 (Build 目標) 上的專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\match\match.vcxproj"。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /I..\..\lib /I..\..\libraries /I..\..\shared /I..\..\libraries\Distrat /I..\..\libraries\bitstream\src /I..\..\libraries\find_overlap /I..\..\libraries\timer /I..\..\libraries\vlfeat /I"..\..\libraries\gmm-fisher" /Zi /nologo /W3 /WX- /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\match\\" /Fd"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\match\vc110.pdb" /Gd /TP /errorReport:prompt ..\..\shared\FileManager.cpp ..\..\src\match.cpp
+         match.cpp
+     1>D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\shared\BoundingBox.h(159): warning C4244: '正在初始化' : 將 'double' 轉換為 'real_t'，由於型別不同，可能導致資料遺失
+     1>..\..\src\match.cpp(310): warning C4267: '引數' : 將 'size_t' 轉換為 'int'，資料可能遺失
+         FileManager.cpp
+         正在產生程式碼...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\match\match.exe" /INCREMENTAL:NO /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\match\match.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\match\match.lib" /MACHINE:X64 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\match\FileManager.obj"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\match\TraceManager.obj"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\obj\x64_Debug\match\match.obj"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\distratlib\distratlib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\vlfeatlib\vlfeatlib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\cdvslib\cdvslib.lib"
+         "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\bin\all_projects\bin\x64_Debug\libcdvs_main\libcdvs_main.lib"
+         match.vcxproj -> D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\all_projects\..\..\bin\all_projects\bin\x64_Debug\match\match.exe
+     1>專案 "D:\ITRI-SmartStore(CDVS)\mpeg-cdvs\CDVS_evaluation_framework\deployment\match\match.vcxproj" (Build 目標) 建置完成。
+
+建置成功。
+
+經過時間 00:00:02.40

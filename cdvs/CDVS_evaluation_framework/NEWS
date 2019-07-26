@@ -1,0 +1,186 @@
+Test Model 14.2
+===============
+2016-03-04  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * No changes (changes in CDVS Applications only)
+
+Test Model 14.1
+===============
+2015-10-30  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * No changes (changes in CDVS Applications only)
+
+Test Model 14.0
+===============
+2015-07-17  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Implementation of optimizations, enhancements and bug fixes proposed in m36391:
+    - CDVS example applications: simpleextract.cpp, batchextract.cpp, simplematch.cpp, simpleretrieve.cpp;
+    - CDVS conformance testing application: conformance.cpp;
+    - check missing libraries in autoconf;
+    - various changes in the MATLAB interface;
+    - check in Project2D to fix localization in some specific cases;
+    - logical AND restored in SCFVIndex.cpp (as in Test Model 12.0);
+  * Building documentation added in the "docs" directory;
+  * Doxygen documentation upgraded.
+
+Test Model 13.0
+===============
+2015-02-25  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Implementation of enhancements and optimizations proposed in m35824;
+  * name changes:
+    - mk_index renamed makeIndex;
+    - all "tm-" and "ti-" prefixes removed;
+    - "ti-cdvs-setup" directory renamed "run";
+  * Doxygen documentation upgraded to reflect all changes.
+
+Test Model 12.0
+===============
+2014-10-28  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Implementation of the CDVS Library proposed in m35072;
+    - abstract interface + implementation library (in three variants: main, lowmem, bflog); 
+    - including optimization of the descriptor computation;
+  * Implementation of the MATLAB interface to CDVS proposed in m35076 (using the CDVS Library);
+  * Removal of the orientation in the feature selection to allow faster computation of keypoints;
+  * Removal of the FAST variant of the ALP keypoint descriptor (obsoleted by the previous change);
+  * Removal of the parameters.txt initialization file (now optional);  
+  * The "shiftOffset" parameter has been renamed "gdThreshold";
+  * Renaming of "HM" classes and methods; 
+  * Upgrade of Doxygen documentation, now in two versions: one for the entire Test Model, and a simpler version for the CDVS Library.
+  
+Test Model 11.0
+===============
+2014-07-17  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Implementation of CDVS syntax change proposed in m34304; 
+  * Implementation of Visual Atoms improvement to the two-way local descriptor matching (doc m34319).
+  * perl scripts updated to run with perl v5.18.2
+
+Test Model 10.0
+===============
+2014-04-14  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Integration of m33159, m33189, m33160;
+    - m33159: CDVS CE1: A low complexity detector ALP_BFLoG;
+    - m33189: CDVS CE2: Improved SCFV;
+    - m33160: CDVS: Evaluate the performance of MBIT algorithm in TM9.0;
+  * Dead code removed in extract and vlfeat;
+  * parameters updated to limit the number of extracted keypoints to 250,250,250,300,500,650 for queries and to 300 for database descriptors;
+  * Implementation of the syntax defined in m33489, with the exception of ConvertedImageXResolution and ConvertedImageYResolution which were rejected by the group;
+  * Implementation of the ModeId numbering defined in m33489;
+  * Removal of obsolete options to produce SIFT cache files.
+
+Test Model 9.0
+==============
+2014-01-24  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * Integration of GD into TM9 by PKU (M32261);
+  * Turn back to the single Gaussian selection mechanism of SCFV;
+  * Fix a bug on the GMM table;
+  * integration of Low Memory ALP (as optional swich); 
+  * removal of hard-coded dependency from mode ID in the code;
+  * upgrade of the resampler library to the latest version;
+  * light cleanup of the code;
+  * ETRI integrated Fast AlpDetector
+  * final small changes to fix the coordinate coding table for DB and the exception handling in JPEG decoding.
+  * cached SIFT files are not used anymore to speed up computation; use AlpDetectorFast.
+
+Test Model 8.0
+==============
+2013-11-12  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * uses the ALP keypoint detector (replaces SIFT detector);
+  * prints the number of keypoints in the log files (this information was required in CE1);
+  * new bitrate control algorithm;
+  * default value of selectMaxPoints is now 3000 (was zero);
+  * value of blockWidth at all modes set to 3 in parameters.txt (the default value is 6);
+  * multithreading extract and retrieve (both Windows and Linux implementations); 
+  * clean up of debugging prints;
+  * all CDVS classes are now stored in the "shared" directory and produce the "cdvslib" library;
+  * the five main executables are in the "src" directory and produce binaries in the "bin" directory;
+  * interoperability test examples added in "scr-interop";
+  * interoperability test scripts added in "ti-cdvs-setup";
+  * all Windows executables are now 64-bit applications (just like Linux executables);
+  * both Visual Studio and Visual Studio Express projects updated to produce 64-bit executables;
+  * both Visual Studio and Visual Studio Express projects now produce the shared "cdvslib" library, just like the Linux makefiles;
+  * Eigen library updated to version 3.1.4; 
+  * using now #include <eigen3/Eigen> instead of just <Eigen> to avoid problems with pre-built packages in Linux;
+  * dropped support of obsolete -l option in match;
+  * added new parameter switch -p in match, to support interoperability tests using a different parameter file for query and reference descriptors.
+
+Test Model 7.0
+==============
+2013-08-13 Massimo Balestri <massimo.balestri@telecomitalia.it> 
+  * Implementation of m30228 and m30309
+    - m30228: "Software maintenance for CDVS: Improving localization accuracy" (ETRI)
+    - m30309: "Proposed Improvements to TM6.0" (VA, Sisvel)
+  * TM 7.0 updated documentation
+  
+Test Model 6.0
+==============
+2013-05-14 Massimo Balestri <massimo.balestri@telecomitalia.it> 
+  * modification proposed in M29348 "Proposed update of Test Model 5.0"
+  * Integration of "Parameters reduction" (m28990)
+  * Integration with "Block based Frequency LoG" (m28991)
+  * Installation package for Windows restored; project type set to is MS Visual Studio 2010 C++ for all projects
+  * deployment.express directory added to build on Windows using Visual Studio Express C++ 2010 (no openMP support)
+  * README updated with instructions to build on Windows
+  * fix mismatched delete[] in extract.cpp
+  * Integration of optionals parts of TM 6.0:
+     - MBIT (m28993)
+     - 2way matching (m29359). The switch "#define USE_2WAY_MATCH" in Parameters.h can be used to turn on/off two way match.
+  * merge of INTEGRATION_6_1 branch with optional parts (MBIT and 2-way matching) switched off (equivalent to Test Model 6.0). This version is conventionally named Test Model 6.1
+
+Test Model 5.0
+==============
+2013-02-17 Massimo Balestri <massimo.balestri@telecomitalia.it> 
+  * CE1 - Enhanced Global Descriptor - PKU-M28061 CE1 - Global descriptor Pairwise Matching using curve fitting - PKU-M28062 CE6 – Retrieval code optimization - PKU-M28064;
+  * H-mode weighted matching, prefix coding, and coordinate coding;
+  * cssc_train fixed; perl scripts updated; added libraris for testing of AC and for Fisher Vector computing
+  * all references to S-mode removed from perl scripts
+  * regression test scripts updated
+  * fixed exceptions, localization in pairwise matching (Jaccard index), memory leaks, perl script for regression test.
+  * Update the windows match project script as the find_overlap.c is removed from this project and BoundBox.h and BoundBox.cpp been added
+  * Yael+BLAS+LAPACK replaced by gmm-fisher+Eigen
+  * code cleanup: all VQ classes removed, all data files removed, Feature.h and FeatureList.h replace all other FeatureSomething.h - same for cpp files
+  * ignore the local Eigen files on Linux
+  * modification for portability on Mac
+  
+Test Model 4.0
+==============
+2012-11-13  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * integration of changes proposed in TM 3.1 (perl scripts, etc.), TM 3.2 (new global descriptor), TM 3.3 (multistage VQ, VQ compensation matrix, weighted matches)
+  * new structure of the code:
+     - all main sources in ./src
+     - all shared classes in ./shared
+     - all data in ./data
+     - all tests in ./tests
+     - the old "common" directory has been removed;
+     - the old "extract", "matchpp", "joinIndices", "mk_index", "retrieve" directories have been removed
+     - the Windows project files are now in a separate directory named ./deployment/winprojects
+     - almost all source files have now the same name as the class they contain, including the first character (no more lowercase/uppercase ambiguity).
+  * new platform-independent perl scripts to run the experiments (all old scripts have been removed)
+  * new format of the SIFT cache files (the old SIFT cache files must be removed if they were generated with an older version of the code)
+  * new qsift data to support multistage VQ (see ./data)
+  * new PCA data to support the Scalable Fisher Vector global descriptor (see ./data)
+  * the Eigen library in the ./libraries directory is now used during building on all platforms (no need to install it in advance on the target machine when building on Linux);
+
+Test Model 3.0
+==============
+2012-08-29  Massimo Balestri <massimo.balestri@telecomitalia.it>
+  * integration of REVV modifications to operate in low memory and high memory mode + integration of STM changes in localization + small fix in REVV.
+  * new Arithmetic Coding library, this version passes the original author's unit test. Tested on experiment 1a, with 512 and 1024 Byte descriptors.
+  * no limits in the number of matching pairs, etc. (all vectors are dynamically allocated). Removed all hard coded directory names, all base directories are specified in the parameters file. XML trace included.
+  * complete removal of any #define limiting the number of files handled by all modules. Also, now all modules handle exceptions.
+  * included Visual Atoms+Telecom Italia+Sysvel Technology proposal on scalar quantization of SIFT descriptors (m25929). S-mode and H-mode introduced.
+  * Updated the coordinate/location coding algorithm to use circular scan with sum-based context. Context models have also been added. 
+  
+Test Model 2.0
+==============
+2012-06-19  Massimo Balestri <massimo.balestri@telecomitalia.it>
+   * This version uses DistratEigen.h, a version of Distrat based on the Eigen library.
+   * This release includes:
+      - m24736: Linux version, parallelizable computation, DISTRAT bugfix.
+      - m24737: Compression/decompression of the SIFT descriptors with small codebooks (5MB limit and 128KB limit)
+      - m24740: Improved retrieval due to the adoption of: (1) relevance flag, (2) fast Euclidean matching and (3) query expansion.
+   * REVV global descriptor added
+   * integration of retrieval improvements from PKU
+   * instructions to build from the SVN tree in Linux added
+
+Test Model 1.0
+==============
+2011-12-30  Massimo Balestri <massimo.balestri@telecomitalia.it>
+   * release of Telecom Italia code to MPEG for Test Model under Consideration

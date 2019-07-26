@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0AC1A4A1-DC65-4772-8983-440E1D9D2753}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>cdvslib</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;USE_POPCNT;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\shared;..\..\libraries\vlfeat;..\..\libraries\Distrat;..\..\libraries\bitstream\src;..\..\libraries\timer;..\..\libraries\gmm-fisher;..\..\libraries\resampler;C:\local\jpeg-8c;C:\local</AdditionalIncludeDirectories>
+      <OpenMPSupport>
+      </OpenMPSupport>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;USE_POPCNT;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\shared;..\..\libraries\vlfeat;..\..\libraries\Distrat;..\..\libraries\bitstream\src;..\..\libraries\timer;..\..\libraries\gmm-fisher;..\..\libraries\resampler;C:\local\jpeg-8c;C:\local</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <FloatingPointModel>Fast</FloatingPointModel>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>true</WholeProgramOptimization>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\libraries\bitstream\src\BitInputStream.cpp" />
+    <ClCompile Include="..\..\libraries\bitstream\src\BitOutputStream.cpp" />
+    <ClCompile Include="..\..\libraries\gmm-fisher\fisher.cpp" />
+    <ClCompile Include="..\..\libraries\gmm-fisher\gaussian_mixture.cpp" />
+    <ClCompile Include="..\..\libraries\gmm-fisher\simd_math.cpp" />
+    <ClCompile Include="..\..\libraries\gmm-fisher\stat.cpp" />
+    <ClCompile Include="..\..\libraries\resampler\resampler.cpp" />
+    <ClCompile Include="..\..\libraries\resampler\stb_image.c" />
+    <ClCompile Include="..\..\libraries\timer\timer.c" />
+    <ClCompile Include="..\..\shared\AlpDetector.cpp" />
+    <ClCompile Include="..\..\shared\AlpDetectorLowMem.cpp" />
+    <ClCompile Include="..\..\shared\AlpOctave.cpp" />
+    <ClCompile Include="..\..\shared\ArithmeticCoding.cpp" />
+    <ClCompile Include="..\..\shared\BoundingBox.cpp" />
+    <ClCompile Include="..\..\shared\Buffer.cpp" />
+    <ClCompile Include="..\..\shared\CdvsDescriptor.cpp" />
+    <ClCompile Include="..\..\shared\CsscCoordinateCoding.cpp" />
+    <ClCompile Include="..\..\shared\Database.cpp" />
+    <ClCompile Include="..\..\shared\Feature.cpp" />
+    <ClCompile Include="..\..\shared\FeatureList.cpp" />
+    <ClCompile Include="..\..\shared\ImageBuffer.cpp" />
+    <ClCompile Include="..\..\shared\Parameters.cpp" />
+    <ClCompile Include="..\..\shared\PointPairs.cpp" />
+    <ClCompile Include="..\..\shared\Points.cpp" />
+    <ClCompile Include="..\..\shared\Projective2D.cpp" />
+    <ClCompile Include="..\..\shared\SCFVData.cpp" />
+    <ClCompile Include="..\..\shared\SCFVIndex.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\libraries\bitstream\src\BitInputStream.h" />
+    <ClInclude Include="..\..\libraries\bitstream\src\BitOutputStream.h" />
+    <ClInclude Include="..\..\libraries\gmm-fisher\fisher.h" />
+    <ClInclude Include="..\..\libraries\gmm-fisher\gaussian_mixture.h" />
+    <ClInclude Include="..\..\libraries\gmm-fisher\simd_math.h" />
+    <ClInclude Include="..\..\libraries\gmm-fisher\stat.h" />
+    <ClInclude Include="..\..\libraries\gmm-fisher\template.h" />
+    <ClInclude Include="..\..\libraries\resampler\resampler.h" />
+    <ClInclude Include="..\..\libraries\timer\HiResTimer.h" />
+    <ClInclude Include="..\..\libraries\timer\timer.h" />
+    <ClInclude Include="..\..\shared\AbstractDetector.h" />
+    <ClInclude Include="..\..\shared\AlpDetector.h" />
+    <ClInclude Include="..\..\shared\AlpDetectorBF.h" />
+    <ClInclude Include="..\..\shared\AlpDetectorLowMem.h" />
+    <ClInclude Include="..\..\shared\AlpOctave.h" />
+    <ClInclude Include="..\..\shared\AlpOctaveBF.h" />
+    <ClInclude Include="..\..\shared\ArithmeticCoding.h" />
+    <ClInclude Include="..\..\shared\BoundingBox.h" />
+    <ClInclude Include="..\..\shared\Buffer.h" />
+    <ClInclude Include="..\..\shared\CdvsDescriptor.h" />
+    <ClInclude Include="..\..\shared\CdvsException.h" />
+    <ClInclude Include="..\..\shared\CdvsPoint.h" />
+    <ClInclude Include="..\..\shared\CsscCoordinateCoding.h" />
+    <ClInclude Include="..\..\shared\Database.h" />
+    <ClInclude Include="..\..\shared\Feature.h" />
+    <ClInclude Include="..\..\shared\FeatureList.h" />
+    <ClInclude Include="..\..\shared\ImageBuffer.h" />
+    <ClInclude Include="..\..\shared\Match.h" />
+    <ClInclude Include="..\..\shared\Parameters.h" />
+    <ClInclude Include="..\..\shared\PointPairs.h" />
+    <ClInclude Include="..\..\shared\Points.h" />
+    <ClInclude Include="..\..\shared\Projective2D.h" />
+    <ClInclude Include="..\..\shared\SCFVIndex.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

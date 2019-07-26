@@ -1,0 +1,111 @@
+
+import os
+import json
+import datetime
+import subprocess
+
+class CV:
+    PREFIX=os.path.dirname(os.path.realpath(__file__))
+    
+    def __init__(self):
+        self.data=dict()
+        with open(os.path.join(CV.PREFIX, 'data', 'data.json')) as fp:
+            for record in json.load(fp):
+                ID=record['ID']
+                box=record['box']
+                cls=record['class']
+                name=record['name']
+                time=record['time']
+                time=datetime.datetime.strptime(time, '%H%M%S').time()
+                secs=time.hour*3600+time.minute*60+time.second-3600
+                time=time.strftime('%H:%M:%S:00')
+                path=os.path.join(CV.PREFIX, 'data', cls, f'{cls}_{name}_{secs}.jpg')
+                #desc_path=os.path.join(CV.PREFIX, 'data', cls, f'{cls}_{name}_{secs}.16384.cdvs')
+                if os.path.isfile(path) and cls!='person': ###
+                    try:
+                        #desc=desc_path
+                        if cls not in self.data:
+                            self.data[cls]=list()
+                            #print("******cls not in self.data*****")
+                        self.data[cls].append({
+                            'ID': ID,
+                            'box': box,
+                            'name': name,
+                            'time': time,
+                            'path': path,
+                            #'desc': desc,
+                            'count':0,
+                            'score':0.0
+                        })
+                    except Exception as E:
+                        print(E)
+    def query(self, imgs):
+        for path, cls in imgs:
+            try:
+                if(cls!='person') :
+                    cls_path = os.path.join("/PTS_server/data",cls)
+                    head, tail = os.path.split(path)
+                    fp_list =open(os.path.join(head, "list"),"a")
+                    fp_query=open(os.path.join(head,"query"),"a")
+                    fp_list.write(tail+"\n") #build list
+                    fp_query.write(tail+"  .jpg\n") #build query
+                    fp_list.close()
+                    fp_query.close()
+                    tmp_cls = cls       
+            except Exception as E:
+                print(E)
+                continue
+        print("************************************************************************")
+        print("class : "+tmp_cls)
+        temp=self.data.get(tmp_cls, [])[:]
+        #for i in temp:
+            #print(i)
+        #print(temp)
+        mom_path = os.getcwd()
+        os.chdir(head)
+        #print("list&query loction : "+head)
+        subprocess.call(["extract","list","6", head, head])
+        subprocess.call(["retrieve","Index","query","6",cls_path,head, "10" ,"0.0","0","-t",head+"p.txt"])
+        subprocess.call(["rm","-f","list"])
+        subprocess.call(["rm","-f","query"])
+        os.chdir(mom_path)                                                             
+        
+        with open(os.path.join(head,"image_score.txt"),"r") as openfileobject:
+            for line in openfileobject:
+                try:
+                    dat = line.split()
+                    im_path = os.path.join(CV.PREFIX, 'data', cls, dat[0])                    
+                    for ii in temp:
+                        if ii['path'] == im_path:
+                            ii['count'] += 1
+                            if float(dat[1]) > ii['score'] :
+                                ii['score'] = float(dat[1])                        
+                except Exception as E:
+                    print(E)
+                    continue            
+        temp = sorted(temp, key = lambda x: (x['score'], x['count']))
+        while temp!=[] and temp[-1]['count']==0:
+            temp.pop()
+        #print("+++++++++++++++++++++++++++++++++++++++++++++++++++++++")
+        #print(temp)
+        tmp_res=list()
+        for i in temp:
+            try:
+                #print(i['path'])
+                #tmp_res[i['path']]=list()
+                tmp_res.append({'ID': i['ID'],
+                                    'box': i['box'],
+                                    'name': i['name'],
+                                    'time': i['time'],
+                                    'path': i['path'],
+                                    'count':i['count'],
+                                    'score':i['score']})
+            except Exception as E:
+                print(E)
+            continue
+        #print("=========================================================")
+        #print(tmp_res) 
+        return tmp_res
+
+CV=CV()
+

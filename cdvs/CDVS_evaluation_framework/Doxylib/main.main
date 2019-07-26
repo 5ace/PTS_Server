@@ -1,0 +1,290 @@
+/**
+@mainpage Documentation
+@section intro Introduction
+This is the documentation of the CDVS Library, a library with minimal dependencies to encode/decode and use MPEG-7 compliant Compact Descriptors for Visual Search. 
+The binary format of CDVS descriptors is specified in ISO/IEC FDIS 15938-13 "Compact Descriptors for Visual Search".
+For further information see http://mpeg.chiariglione.org/standards/mpeg-7/compact-descriptors-visual-search
+
+The CDVS Library structure is based on:
+	- an abstract API using the namespace “mpeg7cdvs”;
+	- a set of libraries composed by three implementation variants: 
+		- libcdvs_main: the reference implementation;
+		- libcdvs_lowmem: a low memory implementation of the ALP keypoint detector;
+		- libcdvs_bflog: an alternative implementation of the ALP keypoint detector based on fast fourier transforms (needs the libfftw3f library);
+
+@section abstracapi Abstract API
+The CDVS abstract API is composed by three abstract base classes and a factory method to get an actual
+implementation of the classes; the implementation is composed by derived classes that implement the virtual methods declared in the abstract base classes.
+
+The CDVS abstract API is contained in a file named CdvsInterface.h and contains the following classes:
+	- CdvsConfiguration - interface to all configuration parameters for clients and servers;
+	- CdvsClient - interface to the client-side functionality of the CDVS Library;
+	- CdvsServer - interface to the server-side functionality of the CDVS Library;
+	
+All classes have a factory method and virtual abstract methods that define the API. In the
+following we provide a brief description, whereas a complete reference documentation
+of the API is available in this document. 
+
+@subsection config CdvsConfiguration
+
+@verbatim
+class CdvsConfiguration {
+public:
+    virtual ~CdvsConfiguration() {};
+    static CdvsConfiguration * cdvsConfigurationFactory(const char * configfile = NULL);
+    virtual const Parameters & getParameters(int mode) const = 0;
+    virtual Parameters & setParameters(int mode) = 0;
+    static int getMode(int descLen);
+};
+@endverbatim
+
+CdvsConfiguration contains a static factory method “cdvsConfigurationFactory” that produces
+an instance of itself; if no parameter is given the configuration will contain the correct default
+parameter values for all modes from 0 to 6. If a “configfile” is passed as parameter, the factory
+method will read the file and change the default values accondingly; the format of the file must
+be the following:
+
+@verbatim
+[Mode = n]
+paramName = value
+@endverbatim
+
+Example:
+
+@verbatim
+[Mode = 1]
+wmThreshold2Way = 1.64
+gdThreshold = 9.285
+
+[Mode = 2]
+wmThreshold = 2.7
+wmMixed = 2.785
+
+[Mode = 3]
+wmThreshold = 2.12
+wmMixed = 2.19
+gdThresholdMixed = 6.025
+
+[Mode = 4]
+gdThreshold = 7.235
+
+[Mode = 5]
+wmThreshold = 2.165
+
+[Mode = 6]
+wmThreshold = 2.15
+@endverbatim
+
+The list of parameters that can be changed is the following:
+
+@verbatim
+int descLength;					 length in bytes of the CDVS descriptor (i.e. 512, 1024, 2048)
+int resizeMaxSize;				 maximum size of one side of the image 
+int blockWidth;					 coordinate coding: spatial resolution of the coordinates (max error = blockWidth/2)
+int ctxTableIdx;				 coordinate coding: index of the context table to use
+char modeExt[40];				 descriptor extension
+unsigned int selectMaxPoints;			 feature extraction: max number of points used to describe an image
+unsigned int numRelevantPoints;			 feature extraction: number of points considered relevant in the retrieval process
+float ratioThreshold;				 DISTRAT: threshold for descriptor matching 
+unsigned int minNumInliers;			 DISTRAT: min number of inliers after the geometric check
+double wmThreshold;				 Weighted matching threshold
+double wmThreshold2Way;				 Two way matching weighted threshold
+double wmMixed;					 Weighted matching threshold for mixed cases
+double wmMixed2Way;				 Two way weighted matching threshold for mixed cases
+int debugLevel;					 0 = off, 1 = on (quiet), 2 = on (verbose), 3 = verbose + dump files 
+int ransacNumTests; 				 RANSAC: number of iterations in RANSAC 
+float ransacThreshold;				 RANSAC: distortion threshold to be used by RANSAC
+unsigned int chiSquarePercentile;		 percentile used in DISTRAT for Chi-square computation
+int retrievalLoops;				 number of loops performed in the final stage of the retrieval process
+double wmRetrieval;				 Weighted matching threshold for retrieval
+double wmRetrieval2Way;				 Two way weighted matching threshold for retrieval
+int retrievalMaxPoints;				 max number of points used in the retrieval experiment
+int queryExpansionLoops;			 number of query expansion loops to perform in the retrieval experiment
+float scfvThreshold;				 threshold value to control the sparsity of scfv vector
+bool hasVar;					 indicates if using the gradient vector w.r.t the variance of Gaussian function
+float locationBits;				 average bits per key point to encode location information;
+bool hasBitSelection;				 indicates if the Global Descriptor uses the bit selection algorithm to reduce its size
+float gdThreshold;				 global descriptor threshold
+float gdThresholdMixed;				 global descriptor threshold for mixed cases
+@endverbatim
+
+
+The getParameter and setParameter methods allow to respectively read and modify some of the
+parameters stored in the CdvsConfiguration instance from the application code, instead of using
+a text file. Finally, getMode is just a convenience method to get a mode ID corresponding to a
+descriptor length, to help developers to select the appropriate mode for their application.
+
+For a complete documentation of this class, see @ref mpeg7cdvs::CdvsConfiguration
+
+@subsection client CdvsClient
+
+@verbatim
+class CdvsClient {
+public:
+    virtual ~CdvsClient() {};
+    static CdvsClient * cdvsClientFactory(const CdvsConfiguration * config, int mode);
+    virtual unsigned int encode(CdvsDescriptor & output, int width, int height, const unsigned char * input) const = 0;
+};
+@endverbatim
+
+The CdvsClient class has a factory method named “cdvsClientFactory” which requires a
+CdvsConfiguration instance and a mode as input parameters. The only other method of the class
+is the “encode” method which encodes the luminance component of an image producing a
+CDVS descriptor. The encode method can be called multiple times to produce a set of
+descriptors, all of which will be produced using the parameter set associated to the same mode 
+(the mode that was specified in the factory method). 
+The encode method is declared “const” to indicate that it does not modify any internal
+variable of the CdvsClient instance, therefore it can be called safely in multithreading mode,
+provided that the CdvsDescriptor output parameter (which is modified!) is declared in the
+address space of the thread (and not shared).
+
+For a complete documentation of this class, see @ref mpeg7cdvs::CdvsClient
+
+@subsection server CdvsServer
+
+@verbatim
+class CdvsServer {
+public:
+    virtual ~CdvsServer() {};
+    static CdvsServer * cdvsServerFactory(const CdvsConfiguration * config, bool twoWayMatch = true);
+    virtual size_t decode(CdvsDescriptor & output, const char * fname) const = 0;
+    virtual size_t decode(CdvsDescriptor & output, const unsigned char * bitstream = NULL, int size = 0) const = 0;
+    virtual PointPairs match(const CdvsDescriptor & queryDescriptor, const CdvsDescriptor & refDescriptor, const CDVSPOINT *r_bbox=NULL, CDVSPOINT *proj_bbox=NULL, int matchType = MATCH_TYPE_DEFAULT) const = 0;
+    virtual PointPairs match(const CdvsDescriptor & queryDescriptor, unsigned int index, const CDVSPOINT *r_bbox=NULL, CDVSPOINT *proj_bbox=NULL, int matchType = MATCH_TYPE_LOCAL) const = 0;
+    virtual void createDB(int mode, int reserve) = 0;
+    virtual unsigned int addDescriptorToDB(const CdvsDescriptor & refDescriptor, const char * referenceImageId) = 0;
+    virtual bool isDescriptorInDB(const char * referenceImageId) const = 0;
+    virtual bool replaceDescriptorInDB(const CdvsDescriptor & refDescriptor, const char * referenceImageId, const char * oldImageId = NULL) = 0;
+    virtual void clearDB() = 0;
+    virtual void commitDB() = 0;
+    virtual void storeDB(const char * localname, const char * globalname) const = 0;
+    virtual void loadDB(const char * localname, const char * globalname) = 0;
+    virtual size_t sizeofDB() const = 0;
+    virtual int retrieve(std::vector<RetrievalData> & results, const CdvsDescriptor & queryDescriptor, unsigned int max_matches) const = 0;
+    virtual std::string getImageId(unsigned int index) const = 0;
+};
+@endverbatim
+
+The CdvsServer class has a factory method named cdvsServerFactory which requires a
+CdvsConfiguration instance and an optional boolean value indicating whether to use two way
+matching or not. This class has more abstract methods than the other two because it incorporates
+all the functionality required by a server to decode CDVS descriptors, use a pair of them for
+matching, aggregate many of them in a database, and finally use a descriptor as a query in a
+retrieval operation. It can also load a DB from a file, or store a DB into a file, making it
+permanent.
+
+Also in this case, some methods are marked as “const” to indicate that they do not modify any
+internal variable of the CdvsServer instance and as such, they can be called safely in a
+multithreading section of the application code.
+Methods not marked as “const” like createDB and loadDB cannot be called from a
+multithreading application as they are not thread-safe.
+
+For a complete documentation of this class, see @ref mpeg7cdvs::CdvsServer
+
+@section thelib The libraries
+The CDVS Library code is entirely written in standard C and C++, and can be compiled on 32 or 64-bit environments (mainly Windows and Linux).
+The library can be easily installed on Linux using autotools. Instruction are given in the README and INSTALL files. 
+The default installation on Linux will place the library in the /usr/local directory, in particular all
+header files will be placed in /usr/local/include and all libraries in /usr/local/lib. The makefile produces three variants of the CDVS library, 
+each one containing a specific ALP Detector implementation (main, low memory, bflog):
+
+@verbatim
+libcdvs_bflog.a   libcdvs_lowmem.a   libcdvs_main.a
+libcdvs_bflog.la  libcdvs_lowmem.la  libcdvs_main.la
+libcdvs_bflog.so  libcdvs_lowmem.so  libcdvs_main.so
+@endverbatim
+
+An application using the CDVS library can select to use any of the three detectors without
+changing a single line of code, by simply linking the desired library.
+Moreover, each library is produced in a static and a dynamic version so that application developers are free to use the solution they prefer.
+
+@section example Examples of usage
+The CDVS Library is very simple to use. A calling application must include just one header file,
+and link against one of the three implementations of the CDVS Library.
+For example, to encode a CDVS descriptor:
+
+@verbatim
+#include "CdvsInterface.h"
+using namespace mpeg7cdvs;
+
+int main(int argc, char *argv[])
+{
+    int mode = 4;
+    
+    // use default configuration (as specified in CDVS)
+    CdvsConfiguration * cdvsconfig = CdvsConfiguration::cdvsConfigurationFactory();
+    CdvsClient * cdvsclient = CdvsClient::cdvsClientFactory(cdvsconfig, mode);
+    
+    // ... read an image here, get the luminance component, width and height of the image
+    
+    CdvsDescriptor output;
+    size_t descriptor_length = cdvsclient->encode(output, width, height, luminance);
+    output.buffer.write(“filename.cdvs”);
+    delete cdvsconfig;		// destroy the CDVS configuration instance
+    delete cdvsclient;		// destroy the CDVS client instance    
+}
+@endverbatim
+
+A more complete example is given below, which encodes one image and uses it as a query in a retrieval operation.
+
+@verbatim
+#include <iostream>
+#include <string>
+#include <jpeglib.h>
+#include "CdvsInterface.h"
+#include "CdvsException.h"
+
+using namespace mpeg7cdvs;
+using namespace std;
+
+class JpegReader {
+... // see the JpegReader implementation in extract.cpp
+};
+
+int main(int argc, char *argv[])
+{
+	int modeID = 5;
+	cout << "example 2: retrieve imageA.jpg from DB.cdvs using modeID = " << modeID << endl;
+
+	CdvsConfiguration * cdvsconfig = CdvsConfiguration::cdvsConfigurationFactory();	// use default values
+	CdvsClient * cdvsclient = CdvsClient::cdvsClientFactory(cdvsconfig, modeID);
+	CdvsServer * cdvsserver = CdvsServer::cdvsServerFactory(cdvsconfig);
+
+	try {
+		CdvsDescriptor query;
+		vector<RetrievalData> results;
+		int max_matches = 40;
+
+		int w,h;
+		unsigned char * imageA = JpegReader::readJpeg("imageA.jpg",w,h);
+		cdvsclient->encode(query, w,h,imageA);
+		delete [] imageA;
+
+		cdvsserver->loadDB("DB.cdvs.local", "DB.cdvs.global");
+		int n = cdvsserver->retrieve(results, query, max_matches);
+
+		// Write the results in standard output
+
+		cout << "image ID - local score - global score" << endl;
+
+		for(unsigned int k=0; k<results.size(); ++k)
+		{
+		  string imgname = cdvsserver->getImageId(results[k].index);
+		  cout << imgname << " " << results[k].fScore << " " << results[k].gScore << endl;
+		}
+
+	}
+	catch(exception & ex)				// catch any exception, including CdvsException
+	{
+		cerr << argv[0] << " exception: " << ex.what() << endl;
+	}
+
+	delete cdvsclient;
+	delete cdvsserver;
+	delete cdvsconfig;
+
+	return 0;
+}
+@endverbatim
+	
+*/

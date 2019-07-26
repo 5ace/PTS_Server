@@ -1,0 +1,21 @@
+[Mode = 1]
+modeExt = .512.test
+
+[Mode = 2]
+modeExt = .1024.test
+
+[Mode = 3]
+modeExt = .2048.test
+
+[Mode = 4]
+modeExt = .4096.test
+
+[Mode = 5]
+modeExt = .8192.test
+
+[Mode = 6]
+modeExt = .16384.test
+
+# This is the profile used to build the database (NOT USED in interoperablity tests)
+[Mode = 0]
+modeExt = .DB.test

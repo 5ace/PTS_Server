@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{10257B0C-11C5-4F68-8903-8C99E2D495DF}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>libcdvs_main</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\..\bin\$(SolutionName)\bin\$(Platform)_$(Configuration)\$(ProjectName)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\bin\$(SolutionName)\obj\$(Platform)_$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions);MAIN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\shared;..\..\libraries\bitstream\src;..\..\libraries\Distrat;C:\local</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(ProjectDir)..\..\lib\CdvsInterface.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsPoint.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsException.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\PointPairs.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Parameters.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsDescriptor.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Buffer.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\ImageBuffer.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\FeatureList.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Feature.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\SCFVIndex.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\AbstractDetector.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\libraries\bitstream\src\BitInputStream.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\libraries\bitstream\src\BitOutputStream.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions);MAIN</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\shared;..\..\libraries\bitstream\src;..\..\libraries\Distrat;C:\local</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(ProjectDir)..\..\lib\CdvsInterface.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsPoint.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsException.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\PointPairs.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Parameters.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\CdvsDescriptor.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Buffer.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\ImageBuffer.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\FeatureList.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\Feature.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\SCFVIndex.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\shared\AbstractDetector.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\libraries\bitstream\src\BitInputStream.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include
+copy $(ProjectDir)..\..\libraries\bitstream\src\BitOutputStream.h $(ProjectDir)..\..\..\CDVS_applications\deployment\include</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\lib\CdvsClientImpl.cpp" />
+    <ClCompile Include="..\..\lib\CdvsConfigurationImpl.cpp" />
+    <ClCompile Include="..\..\lib\CdvsInterface.cpp" />
+    <ClCompile Include="..\..\lib\CdvsServerImpl.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\lib\CdvsClientBflog.h" />
+    <ClInclude Include="..\..\lib\CdvsClientImpl.h" />
+    <ClInclude Include="..\..\lib\CdvsClientLowMem.h" />
+    <ClInclude Include="..\..\lib\CdvsConfigurationImpl.h" />
+    <ClInclude Include="..\..\lib\CdvsInterface.h" />
+    <ClInclude Include="..\..\lib\CdvsServerImpl.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

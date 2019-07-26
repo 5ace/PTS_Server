@@ -1,0 +1,22 @@
+/*
+* ============================================================================
+*  Name     : BitstreamLib.mmp
+*  Part of  : BitstreamLib
+*  Created  : 28/03/2003 by Massimo Balestri
+*  Description:
+*     This is the project specification file for BitstreamLib.
+*     
+*  Version  :
+*  Copyright: TILAB S.p.A.
+* ============================================================================
+*/
+
+TARGET  BitstreamLib.lib
+TARGETTYPE  lib
+SOURCEPATH ..\..\src
+SOURCE  BitInputStream.cpp 
+SOURCE  BitOutputStream.cpp
+LANG     SC
+USERINCLUDE . ..\..\src
+SYSTEMINCLUDE   . \epoc32\include \epoc32\include\libc
+
