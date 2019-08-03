@@ -1,24 +1,29 @@
 #!/bin/bash
 
+restart_flag=false
+
 # Check nvidia driver and version
 nvidia-smi | if grep -q 'Driver Version: 41'; then
     echo ""
     echo "Nvidia driver is installed and up to date."
+    echo ""
 else
     # Install nvidia driver
     echo "Installing Nvidia driver..."
     sudo add-apt-repository ppa:graphics-drivers/ppa
     sudo apt-get update
     sudo apt-get install nvidia-driver-410
+
+    restart_flag=true
 fi
 
-nvidia-smi | if grep -q 'Driver Version: 41'; then
-    echo""
-else
-    echo "Failed installing Nvidia driver or is outdated."
-    echo "Please install version 410(or above) manually."
-    exit 1
-fi
+#nvidia-smi | if grep -q 'Driver Version: 41'; then
+#    echo""
+#else
+#    echo "Failed installing Nvidia driver or is outdated."
+#    echo "Please install version 410(or above) manually."
+#    exit 1
+#fi
 
 
 # Check CUDA version
@@ -34,6 +39,8 @@ else
     export PATH=$PATH:/usr/local/cuda/bin
     source ~/.bashrc
     sudo apt-get install nvidia-cuda-toolkit
+
+    #restart_flag=true
 fi
 
 nvcc -V | if grep -q 'release 10'; then
@@ -63,13 +70,75 @@ else
     exit 1
 fi
 
-# Check and start conda enviroment
-conda env list | if grep -q 'PTS'; then
-    echo "Conda venv PTS checked."
-    conda activate PTS
+# Check and start virtual enviroment
+#ls | if grep -q 'PTS_venv'; then
+#    echo "Virtual environment PTS_venv checked."
+#    source ./PTS_venv/bin/activate
+#else
+#    echo "Creating Virtual environment PTS_venv..."
+#    virtualenv PTS_venv
+#    echo "Virtual environment PTS_venv checked."
+#    source ./PTS_venv/bin/activate
+#fi
+
+echo "Python package Checking ..."
+
+pip3 list |& if grep 'tornado' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package tornado ok."
 else
-    echo "Creating conda venv PTS..."
-    conda create -n PTS
+    pip3 install tornado
 fi
 
-conda activate PTS
+pip3 list |& if grep 'google-api-python-client' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package google-api-python-client ok."
+else
+    pip3 install google-api-python-client
+fi
+
+pip3 list |& if grep 'mxnet' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package mxnet ok."
+else
+    pip3 install mxnet
+fi
+
+pip3 list |& if grep -q 'scipy' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package scipy ok."
+else
+    pip3 install scipy
+fi
+
+pip3 list |& if grep -q 'opencv-python' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package opencv-python ok."
+else
+    pip3 install opencv-python
+fi
+
+pip3 list |& if grep -q 'tensorflow-gpu' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package tensorflow-gpu ok."
+else
+    pip3 install tensorflow-gpu
+fi
+
+pip3 list |& if grep -q 'scikit-learn' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package scikit-learn Check."
+else
+    pip3 install -U scikit-learn
+fi
+
+pip3 list |& if grep -q 'torch' 1>/dev/null 2>/dev/null; then
+    echo "  |--Python package Pytorch Check."
+else
+    pip install torch==0.3.1 -f https://download.pytorch.org/whl/cu100/stable
+fi
+
+pip3 list |& if grep -q 'Pillow' 1>/dev/null 2>/dev/null; then
+    echo "  '--Python package Pillow Check."
+else
+    pip install Pillow
+fi
+
+# Start Server
+echo ""
+echo "Starting Server ..."
+echo ""
+python3 main.py
