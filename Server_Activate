@@ -17,6 +17,13 @@ else
     restart_flag=true
 fi
 
+if [ "$restart_flag" = true ]; then
+    echo "Please restart server with 'sudo reboot' after installing Nvidia driver."
+    echo "Execute this script again after rebooting."
+    echo ""
+    exit 1
+fi
+
 #nvidia-smi | if grep -q 'Driver Version: 41'; then
 #    echo""
 #else
@@ -138,7 +145,4 @@ else
 fi
 
 # Start Server
-echo ""
-echo "Starting Server ..."
-echo ""
 python3 main.py
